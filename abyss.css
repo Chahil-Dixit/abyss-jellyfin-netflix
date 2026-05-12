@@ -373,9 +373,17 @@ body:has(#itemDetailPage) .backdropImage {
     filter: blur(23px) saturate(120%) contrast(120%) brightness(25%);
 }
 
+.backdropContainer {
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+}
+
 .backgroundContainer.withBackdrop {
     background-color: rgba(0, 0, 0, 0);
 }
+
+
 
 /* Navigation / drawer */
 .editPageSidebar,

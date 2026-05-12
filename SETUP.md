@@ -188,7 +188,29 @@ Arrange sections in this exact order:
 
 ### Step 4.1: Locate your Jellyfin web directory
 
-Typical locations (Windows): `C:\Program Files\Jellyfin\Server\jellyfin-web\`
+#### Typical locations:
+- **Windows** 
+  - `C:\Program Files\Jellyfin\Server\jellyfin-web\`
+  - `C:\Program Files (x86)\Jellyfin\Server\jellyfin-web`
+  - `C:\ProgramData\Jellyfin\Server\jellyfin-web`
+- **Linux (native packages)**
+  - `/usr/share/jellyfin/web`
+  - `/usr/lib/jellyfin/web`
+  - `/var/lib/jellyfin/web`
+  - `/opt/jellyfin/web`
+- **MacOS (Homebrew (intel and apple Silicon))**
+  - `/usr/local/share/jellyfin/web`
+  - `/opt/homebrew/share/jellyfin/web`
+  - `/opt/homebrew/opt/jellyfin/web`
+  - `/usr/local/opt/jellyfin/web`
+- **MacOS (App bundle)**
+  - `/Applications/Jellyfin.app/Contents/Resources/jellyfin-web`
+  - `$HOME/Applications/Jellyfin.app/Contents/Resources/  - jellyfin-web`
+  - `/Applications/Jellyfin.app/Contents/Resources/web`
+  - `$HOME/Applications/Jellyfin.app/Contents/Resources/web`
+- **Docker (jellyfin/jellfin (*official image*))** 
+  - `/jellyfin/jellyfin-web`
+    > Note: this is the path inside the container, not on the host. 
 
 ### Step 4.2: Create folders
 

@@ -9,7 +9,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,300..700;1,17..18,300..700&display=swap"
 		rel="stylesheet" />
-	<link rel="stylesheet" href="/web/ui/spotlight.css" />
+	<link rel="stylesheet" href="spotlight.css" />
 </head>
 
 <body>
@@ -62,7 +62,10 @@
 			function getBaseUrl() {
 				try {
 					const loc = window.top.location;
-					return `${loc.protocol}//${loc.host}`;
+					const origin = `${loc.protocol}//${loc.host}`;
+					const match = loc.pathname.match(/^(.*?)\/web\b/);
+					const basePath = match ? match[1] : '';
+					return `${origin}${basePath}`;
 				} catch {
 					try {
 						const creds = JSON.parse(localStorage.getItem('jellyfin_credentials'));

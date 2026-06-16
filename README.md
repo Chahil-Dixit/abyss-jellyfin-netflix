@@ -2,7 +2,7 @@
 
 # [Abyss](https://aumgupta.github.io/abyss-jellyfin/) for Jellyfin
 
-![GitHub License](https://img.shields.io/github/license/AumGupta/abyss-jellyfin?style=for-the-badge)
+![GitHub License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![GitHub Release](https://img.shields.io/github/v/release/AumGupta/abyss-jellyfin?style=for-the-badge)
 ![jsDelivr Requests](https://img.shields.io/jsdelivr/gh/hm/AumGupta/abyss-jellyfin?style=for-the-badge&label=Usage&logo=none)
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/AumGupta/abyss-jellyfin/total?style=for-the-badge)](https://github.com/AumGupta/abyss-jellyfin/releases/latest)
@@ -35,42 +35,6 @@ A clean and minimal theme for Jellyfin with frosted glass surfaces, refined typo
 <a href="https://youtu.be/CAjI7qgvJzo">
   <img src="docs/assets/images/preview-full.png" style="width:100%;"/>
 </a>
-
-<!-- 
-### Cards & UI Details
-<table>
-  <tr>
-    <td rowspan="2" width="40%"><img src="docs/assets/images/5.png" style="width:100%;"/></td>
-    <td><img src="docs/assets/images/6.png" style="width:100%;"/></td>
-  </tr>
-  <tr>
-    <td><img src="docs/assets/images/4.png" style="width:100%;"/></td>
-  </tr>
-</table>
-
-### Libraries
-<table>
-  <tr>
-    <td width="50%"><img src="docs/assets/images/details-page.png" style="width:100%;"/></td>
-    <td width="50%"><img src="docs/assets/images/shows-2.png" style="width:100%;"/></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/assets/images/movies-2.png" style="width:100%;"/></td>
-    <td width="50%"><img src="docs/assets/images/movies-1.png" style="width:100%;"/></td>
-  </tr>
-</table>
-
-### Music
-<table>
-  <tr>
-    <td width="50%"><img src="docs/assets/images/music1.png" style="width:100%;"/></td>
-    <td width="50%"><img src="docs/assets/images/music2.png" style="width:100%;"/></td>
-  </tr>
-    <td width="50%"><img src="docs/assets/images/music3.png" style="width:100%;"/></td>
-    <td width="50%"><img src="docs/assets/images/music4.png" style="width:100%;"/></td>
-  <tr>
-  </tr>
-</table> -->
 
 </details>
 
@@ -231,17 +195,10 @@ Override any of these variables at the top of your **Custom CSS** field, after t
 
 </details>
 
-## Contributing & Support
+## Contributing
 
 Pull requests are welcome. For suggestions, feature requests, or bug reports, open an issue on the [Issues](https://github.com/AumGupta/abyss-jellyfin/issues) page. Please include your Jellyfin version and a screenshot where relevant.
 
 ## License
 
 Abyss is licensed under the [MIT License](https://github.com/AumGupta/abyss-jellyfin?tab=MIT-1-ov-file).
-
-## Credits
-
-- [Google Sans](https://fonts.google.com/specimen/Google+Sans) by Google, served via Google Fonts.
-- [Material Icons Round](https://fonts.google.com/icons) by Google, served via jsDelivr.
-- Built with inspiration from [Ultrachromic](https://github.com/CTalvio/Ultrachromic) by CTalvio.
-- Spotlight home banner concept inspired by [jellyfin-featured-content-bar](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar) by tedhinklater.

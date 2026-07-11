@@ -231,3 +231,40 @@ a[data-role="button"]:hover {
   border-radius: 4px 4px 0 0;
   box-shadow: 0 0 8px rgba(10, 132, 255, 0.6);
 }
+
+/* =========================================
+   TRANSPARENT MENU & LIST HOVERS
+   Fixes the solid blue blocks on context menus
+   ========================================= */
+
+/* Override Abyss's solid background for all menu and list items */
+.navMenuOption:hover,
+.listItem:hover,
+.listItem-content:hover,
+.actionSheetMenuItem:hover,
+.paperList .listItem:hover {
+  background: rgba(10, 132, 255, 0.15) !important; /* Soft, transparent blue */
+  color: #ffffff !important; /* Force bright white text */
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+/* Ensure any internal text (like titles inside the 3-dot menu) also turns white */
+.navMenuOption:hover .navMenuOptionText,
+.navMenuOption:hover .navMenuOptionIcon,
+.listItem:hover .listItemBodyText,
+.actionSheetMenuItem:hover .actionSheetMenuItemText,
+.actionSheetMenuItem:hover .actionSheetMenuItemIcon,
+.listItem:hover .material-icons {
+  color: #ffffff !important; 
+}
+
+/* Sidebar selected item - soft gradient fade */
+.navMenuOption-selected {
+  background: linear-gradient(90deg, rgba(10, 132, 255, 0.25) 0%, transparent 100%) !important;
+  border-left: 4px solid #0a84ff !important;
+  color: #ffffff !important;
+}
+
+.navMenuOption-selected .navMenuOptionIcon {
+  color: #0a84ff !important; 
+}

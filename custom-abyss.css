@@ -183,3 +183,51 @@ a[data-role="button"]:hover {
 .navMenuOption-selected .navMenuOptionIcon {
   color: #0a84ff !important; /* Tint the icon blue instead of the whole background */
 }
+
+/* =========================================
+   CLEAN & MODERN HEADER TABS
+   Removes solid backgrounds from top tabs
+   ========================================= */
+
+/* 1. Base Tab Styling */
+.emby-tabs-slider {
+  background: transparent !important; /* Removes the dark box behind the tabs */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 2. The Buttons Themselves */
+.emby-tab-button {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.6) !important; /* Muted white when inactive */
+  border-radius: 0 !important; /* Remove pill shape */
+  padding: 10px 16px !important;
+  text-transform: none !important; /* Removes ALL CAPS */
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+
+/* 3. Hover State */
+.emby-tab-button:hover {
+  background: transparent !important; 
+  color: #ffffff !important; /* Bright white on hover */
+}
+
+/* 4. Active/Selected State */
+.emby-tab-button-active {
+  color: #0a84ff !important; /* Glowy iOS Blue text */
+  font-weight: 600 !important;
+}
+
+/* The Blue Underline for the active tab */
+.emby-tab-button-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: #0a84ff !important;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 8px rgba(10, 132, 255, 0.6);
+}

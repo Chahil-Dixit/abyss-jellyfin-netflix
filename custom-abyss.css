@@ -1,270 +1,295 @@
-/* 1. Base Abyss Import (The Original Cinematic Layout) */
-@import url("https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/abyss.css");
+/* ========================================================
+   OLED GLASS THEME FOR JELLYFIN 10.10+
+   100% Standalone - No external imports or cache issues
+   ======================================================== */
 
-/* 2. Premium Font Upgrade (Outfit) */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-/* 3. CORE ABYSS VARIABLE OVERRIDES */
 :root {
-  /* Apple iOS Blue Accent (10, 132, 255) */
-  --abyss-accent: 10, 132, 255; 
-  
-  /* Smooth modern rounding */
-  --abyss-radius: 12px;
-  
-  /* OLED Black Glass for sidebars and menus */
-  --abyss-glass-tint: 5, 5, 5;
-  
-  /* Custom True Black */
   --oled-black: #000000;
+  --glass-surface: rgba(15, 15, 15, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-blue: #0a84ff;         /* iOS Blue */
+  --accent-glow: rgba(10, 132, 255, 0.4);
+  --text-main: #f5f5f7;
+  --text-muted: #a1a1a6;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
 }
 
-/* 4. TYPOGRAPHY & OLED BACKGROUNDS */
-body, 
-.backgroundContainer, 
-.appfooter, 
-.mainDrawer, 
-.dialog, 
-.skinHeader,
-.emby-button,
-.cardText {
-  font-family: 'Outfit', sans-serif !important;
-}
-
-/* Force true black everywhere */
+/* ----------------------------------------------------
+   1. GLOBAL TYPOGRAPHY & OLED BACKGROUND
+   ---------------------------------------------------- */
 body, 
 .backgroundContainer,
 .backgroundContainer.withBackdrop,
-.appfooter {
-  background-color: var(--oled-black) !important;
-}
-
-/* 5. SMOOTH CARD HOVER PHYSICS */
-.card {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s ease !important;
-}
-
-.card:hover {
-  transform: scale(1.05) translateY(-4px);
-  z-index: 10;
-}
-
-.card:hover .cardImageContainer {
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Keep card text clean and slightly muted until hovered */
+.appfooter,
+.formDialogHeader,
+.formDialogFooter,
+.emby-button,
+.emby-input,
 .cardText {
-  transition: color 0.3s ease;
-}
-.card:hover .cardText-first {
-  color: rgb(var(--abyss-accent)) !important;
-}
-
-/* 6. GLOWING BLUE PROGRESS BARS */
-.taskProgressOuter {
-  height: 4px !important; 
-  background: rgba(255, 255, 255, 0.1) !important;
+  font-family: 'Outfit', sans-serif !important;
+  background-color: var(--oled-black) !important;
+  color: var(--text-main) !important;
 }
 
-.taskProgressInner, 
-#videoOsdPage .sliderMarker.watched,
-progress::-webkit-progress-value,
-progress::-moz-progress-bar { 
-  background-color: rgb(var(--abyss-accent)) !important;
-  box-shadow: 0 0 10px rgba(10, 132, 255, 0.6) !important;
+/* Blur the background fanart so it isn't distracting */
+.backdropImage {
+  filter: blur(25px) brightness(30%) !important;
 }
 
-/* 7. HIGH-CONTRAST ACTION BUTTONS */
-/* Make Play/Resume buttons pure white with black text */
-.btnPlay, .btnResume {
-  background: #ffffff !important;
-  color: #000000 !important;
-  font-weight: 700 !important;
-  border-radius: 50px !important; /* Pill shape for primary actions */
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15) !important;
-  transition: transform 0.2s ease, background 0.2s ease !important;
+/* Remove default Jellyfin blue selection */
+::selection {
+  background: var(--accent-glow);
+  color: #fff;
 }
 
-.btnPlay:hover, .btnResume:hover {
-  background: #e5e5ea !important;
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25) !important;
+/* ----------------------------------------------------
+   2. FROSTED GLASS PANELS (Menus, Drawers, Dialogs)
+   ---------------------------------------------------- */
+.mainDrawer, 
+.dialog, 
+.actionSheet,
+.editPageSidebar {
+  background-color: var(--glass-surface) !important;
+  backdrop-filter: blur(24px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* Keep secondary buttons dark/frosted but with blue hover */
-.raised:hover:not(.btnPlay):not(.btnResume), 
-.fab:hover, 
-a[data-role="button"]:hover {
+/* ----------------------------------------------------
+   3. CLEAN HEADER TABS (No solid pills, glowing underline)
+   ---------------------------------------------------- */
+.emby-tabs-slider {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.emby-tab-button {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  text-transform: none !important; /* Removes ALL CAPS */
+  font-weight: 500 !important;
+  font-size: 1.05rem !important;
+  border-radius: 0 !important;
+  padding: 10px 16px !important;
+  transition: color 0.2s ease !important;
+}
+
+.emby-tab-button:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.emby-tab-button-active {
+  color: var(--accent-blue) !important;
+  font-weight: 600 !important;
+}
+
+.emby-tab-button-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 3px;
+  background: var(--accent-blue) !important;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ----------------------------------------------------
+   4. TRANSPARENT LIST & MENU HOVERS (Fixing the solid blocks)
+   ---------------------------------------------------- */
+.navMenuOption, 
+.listItem, 
+.actionSheetMenuItem {
+  border-radius: var(--radius-md) !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+/* Hover state: Transparent blue wash, readable white text */
+.navMenuOption:hover, 
+.listItem:hover, 
+.actionSheetMenuItem:hover {
   background: rgba(10, 132, 255, 0.15) !important;
-  color: rgb(var(--abyss-accent)) !important;
-  border-color: rgba(10, 132, 255, 0.3) !important;
+  color: #ffffff !important;
 }
 
-/* =========================================
-   STICKY SAVE BUTTONS
-   Floats the submit buttons at the bottom
-   ========================================= */
+/* Force internal text/icons to turn white on hover */
+.navMenuOption:hover .navMenuOptionText,
+.navMenuOption:hover .navMenuOptionIcon,
+.listItem:hover .listItemBodyText,
+.actionSheetMenuItem:hover .actionSheetMenuItemText,
+.actionSheetMenuItem:hover .material-icons {
+  color: #ffffff !important;
+}
 
-/* 1. Dashboard Settings Pages */
+/* Sidebar Selected State: Soft gradient with a solid blue edge */
+.navMenuOption-selected {
+  background: linear-gradient(90deg, rgba(10, 132, 255, 0.2) 0%, transparent 100%) !important;
+  border-left: 4px solid var(--accent-blue) !important;
+  color: #ffffff !important;
+}
+.navMenuOption-selected .navMenuOptionIcon {
+  color: var(--accent-blue) !important;
+}
+
+/* ----------------------------------------------------
+   5. STICKY FROSTED SAVE BUTTONS 
+   ---------------------------------------------------- */
+/* Dashboard sticky save bar */
 .formSubmit {
   position: sticky !important;
   bottom: 20px !important;
   z-index: 100 !important;
   padding: 16px !important;
-  background: rgba(0, 0, 0, 0.75) !important;
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--abyss-radius);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+  background: rgba(5, 5, 5, 0.7) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   display: flex;
   justify-content: flex-end;
   margin-top: 2em;
 }
 
-/* 2. Metadata Editor & Popups */
+/* Dialog/Popup sticky save bar */
 .formDialogFooter {
   position: sticky !important;
   bottom: 0 !important;
   z-index: 100 !important;
-  background: rgba(5, 5, 5, 0.85) !important;
+  background: rgba(5, 5, 5, 0.8) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 16px 20px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid var(--glass-border) !important;
   margin-bottom: 0 !important;
 }
 
-/* Ensure the submit button itself pops within the sticky bar */
+/* The Save Button itself: Glassy Blue with White Rim Light on hover */
 .formSubmit .button-submit,
 .formDialogFooter .button-submit {
-  background: rgba(10, 132, 255, 0.9) !important; /* Glowy iOS Blue */
+  background: rgba(10, 132, 255, 0.25) !important;
+  border: 1px solid rgba(10, 132, 255, 0.6) !important;
   color: #ffffff !important;
   font-weight: 600 !important;
-  border-radius: 50px !important;
-  box-shadow: 0 4px 15px rgba(10, 132, 255, 0.4) !important;
-  transition: transform 0.2s ease, background 0.2s ease !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 10px 24px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 15px rgba(10, 132, 255, 0.15) !important;
 }
 
 .formSubmit .button-submit:hover,
 .formDialogFooter .button-submit:hover {
-  background: #0a84ff !important;
+  background: rgba(10, 132, 255, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important; /* White rim light */
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(10, 132, 255, 0.6) !important;
+  box-shadow: 0 6px 20px var(--accent-glow) !important;
 }
 
-/* =========================================
-   TRANSPARENT MENU & LIST HOVERS
-   ========================================= */
-
-/* Remove the solid background on hover for all menu/list items */
-.navMenuOption:hover,
-.listItem:hover,
-.actionSheetMenuItem:hover,
-.emby-select-withcolor:hover {
-  background: rgba(10, 132, 255, 0.15) !important; /* 15% opacity blue */
-  color: #ffffff !important; /* Keep the text bright white */
-  border-radius: 12px !important; 
-  transition: background 0.2s ease, color 0.2s ease !important;
-}
-
-/* For the currently active/selected menu item in the sidebar */
-.navMenuOption-selected {
-  /* Use a smooth fade from left to right instead of a solid block */
-  background: linear-gradient(90deg, rgba(10, 132, 255, 0.25) 0%, transparent 100%) !important;
-  border-left: 4px solid #0a84ff !important; /* Sharp blue line on the left */
-  color: #ffffff !important;
-  border-radius: 0 12px 12px 0 !important;
-}
-
-/* Ensure the icons inside the menu stay white on hover */
-.navMenuOption:hover .navMenuOptionIcon,
-.navMenuOption-selected .navMenuOptionIcon {
-  color: #0a84ff !important; /* Tint the icon blue instead of the whole background */
-}
-
-/* =========================================
-   CLEAN & MODERN HEADER TABS
-   Removes solid backgrounds from top tabs
-   ========================================= */
-
-/* 1. Base Tab Styling */
-.emby-tabs-slider {
-  background: transparent !important; /* Removes the dark box behind the tabs */
-  border: none !important;
+/* ----------------------------------------------------
+   6. CINEMATIC POSTER CARDS & HOVER PHYSICS
+   ---------------------------------------------------- */
+.cardBox {
+  background: transparent !important;
   box-shadow: none !important;
 }
 
-/* 2. The Buttons Themselves */
-.emby-tab-button {
-  background: transparent !important;
-  color: rgba(255, 255, 255, 0.6) !important; /* Muted white when inactive */
-  border-radius: 0 !important; /* Remove pill shape */
-  padding: 10px 16px !important;
-  text-transform: none !important; /* Removes ALL CAPS */
-  font-weight: 500 !important;
-  transition: color 0.2s ease !important;
+.cardImageContainer {
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 3. Hover State */
-.emby-tab-button:hover {
-  background: transparent !important; 
-  color: #ffffff !important; /* Bright white on hover */
+.card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* 4. Active/Selected State */
-.emby-tab-button-active {
-  color: #0a84ff !important; /* Glowy iOS Blue text */
-  font-weight: 600 !important;
+/* Hover lift and shadow */
+.card:hover {
+  transform: scale(1.04) translateY(-4px);
+  z-index: 10;
+}
+.card:hover .cardImageContainer {
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
 }
 
-/* The Blue Underline for the active tab */
-.emby-tab-button-active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: 80%;
-  height: 3px;
-  background: #0a84ff !important;
-  border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 8px rgba(10, 132, 255, 0.6);
+/* Clean up card text underneath */
+.cardText {
+  padding-top: 8px !important;
+  color: var(--text-muted);
+  font-weight: 400;
+  text-align: left !important;
+}
+.cardText-first {
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
+}
+.card:hover .cardText-first {
+  color: var(--accent-blue) !important;
 }
 
-/* =========================================
-   TRANSPARENT MENU & LIST HOVERS
-   Fixes the solid blue blocks on context menus
-   ========================================= */
-
-/* Override Abyss's solid background for all menu and list items */
-.navMenuOption:hover,
-.listItem:hover,
-.listItem-content:hover,
-.actionSheetMenuItem:hover,
-.paperList .listItem:hover {
-  background: rgba(10, 132, 255, 0.15) !important; /* Soft, transparent blue */
-  color: #ffffff !important; /* Force bright white text */
-  transition: background 0.2s ease, color 0.2s ease !important;
+/* ----------------------------------------------------
+   7. PROGRESS BARS & PLAY BUTTONS
+   ---------------------------------------------------- */
+.taskProgressOuter {
+  height: 4px !important; 
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: var(--radius-pill);
 }
 
-/* Ensure any internal text (like titles inside the 3-dot menu) also turns white */
-.navMenuOption:hover .navMenuOptionText,
-.navMenuOption:hover .navMenuOptionIcon,
-.listItem:hover .listItemBodyText,
-.actionSheetMenuItem:hover .actionSheetMenuItemText,
-.actionSheetMenuItem:hover .actionSheetMenuItemIcon,
-.listItem:hover .material-icons {
-  color: #ffffff !important; 
+.taskProgressInner, 
+#videoOsdPage .sliderMarker.watched,
+progress::-webkit-progress-value {
+  background: var(--accent-blue) !important; 
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 10px var(--accent-glow) !important;
 }
 
-/* Sidebar selected item - soft gradient fade */
-.navMenuOption-selected {
-  background: linear-gradient(90deg, rgba(10, 132, 255, 0.25) 0%, transparent 100%) !important;
-  border-left: 4px solid #0a84ff !important;
-  color: #ffffff !important;
+/* Solid White primary action buttons */
+.btnPlay, .btnResume {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-pill) !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+.btnPlay:hover, .btnResume:hover {
+  background: #e5e5ea !important;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2) !important;
 }
 
-.navMenuOption-selected .navMenuOptionIcon {
-  color: #0a84ff !important; 
+/* Secondary frosted buttons */
+.emby-button.raised:not(.btnPlay):not(.btnResume), .fab {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--radius-pill) !important;
+  color: #fff !important;
+  backdrop-filter: blur(10px);
+}
+.emby-button.raised:not(.btnPlay):not(.btnResume):hover, .fab:hover {
+  background: rgba(10, 132, 255, 0.2) !important;
+  border: 1px solid rgba(10, 132, 255, 0.5) !important;
+  color: var(--accent-blue) !important;
+}
+
+/* Form Inputs */
+.emby-input, .emby-textarea, .emby-select {
+  background: rgba(20, 20, 20, 0.8) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px !important;
+}
+.emby-input:focus, .emby-select:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 8px var(--accent-glow) !important;
 }

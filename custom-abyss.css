@@ -1,106 +1,102 @@
-/* 1. Import the base Abyss theme from the same directory */
-@import url("abyss.css");
+/* 1. Base Abyss Import (The Original Cinematic Layout) */
+@import url("https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/abyss.css");
 
-/* 2. MODERN UI OVERRIDES */
+/* 2. Premium Font Upgrade (Outfit) */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* 3. CORE ABYSS VARIABLE OVERRIDES */
 :root {
-  /* Modern Indigo Accent (#6366f1) - Crisp, vibrant, but easy on the eyes */
-  --abyss-accent: 99, 102, 241; 
+  /* Apple iOS Blue Accent (10, 132, 255) */
+  --abyss-accent: 10, 132, 255; 
   
-  /* Smoother, larger rounding for a softer modern look */
-  --abyss-radius: 16px;
+  /* Smooth modern rounding */
+  --abyss-radius: 12px;
   
-  /* Very dark translucent tint for frosted glass effects */
-  --abyss-glass-tint: 10, 10, 12;
+  /* OLED Black Glass for sidebars and menus */
+  --abyss-glass-tint: 5, 5, 5;
   
-  /* OLED-friendly zinc background */
-  --modern-bg: #09090b; 
-  /* Subtle glow color based on the accent */
-  --accent-glow: rgba(99, 102, 241, 0.4);
+  /* Custom True Black */
+  --oled-black: #000000;
 }
 
-/* Deep, clean background for the whole app */
+/* 4. TYPOGRAPHY & OLED BACKGROUNDS */
+body, 
+.backgroundContainer, 
+.appfooter, 
+.mainDrawer, 
+.dialog, 
+.skinHeader,
+.emby-button,
+.cardText {
+  font-family: 'Outfit', sans-serif !important;
+}
+
+/* Force true black everywhere */
 body, 
 .backgroundContainer,
 .backgroundContainer.withBackdrop,
 .appfooter {
-  background-color: var(--modern-bg) !important;
+  background-color: var(--oled-black) !important;
 }
 
-/* 3. PREMIUM GLASSMORPHISM (Drawers, Modals, Menus) */
-.mainDrawer, 
-.dialog, 
-.editPageSidebar,
-.actionSheet {
-  background-color: rgba(10, 10, 12, 0.65) !important;
-  backdrop-filter: blur(24px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5) !important;
-  border-radius: 24px !important; /* Extra round for floating containers */
-}
-
-/* 4. MODERN CARD HOVERS (Floating effect with subtle glow) */
+/* 5. SMOOTH CARD HOVER PHYSICS */
 .card {
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
-  border: 1px solid rgba(255, 255, 255, 0.04); /* Very faint border to define edges */
-  border-radius: var(--abyss-radius);
-  overflow: visible !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s ease !important;
 }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: scale(1.05) translateY(-4px);
   z-index: 10;
-  border-color: rgba(99, 102, 241, 0.5); /* Accent border on hover */
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 0 16px var(--accent-glow) !important;
 }
 
-/* Clean up card text */
+.card:hover .cardImageContainer {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Keep card text clean and slightly muted until hovered */
 .cardText {
-  font-weight: 500;
-  letter-spacing: 0.2px;
+  transition: color 0.3s ease;
+}
+.card:hover .cardText-first {
+  color: rgb(var(--abyss-accent)) !important;
 }
 
-/* 5. PILL-SHAPED & TRANSLUCENT BUTTONS */
-.btnPlay, 
-.btnResume, 
-.raised, 
-.fab, 
-a[data-role="button"] {
-  border-radius: 50px !important; /* Pill shape */
-  font-weight: 600 !important;
-  letter-spacing: 0.5px;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* 6. GLOWING BLUE PROGRESS BARS */
+.taskProgressOuter {
+  height: 4px !important; 
+  background: rgba(255, 255, 255, 0.1) !important;
 }
 
-.btnPlay:hover, 
-.btnResume:hover, 
-.raised:hover, 
-.fab:hover, 
-a[data-role="button"]:hover {
-  background-color: rgb(var(--abyss-accent)) !important;
-  border-color: rgb(var(--abyss-accent)) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 12px var(--accent-glow) !important;
-  transform: scale(1.05);
-}
-
-/* 6. GLOWING PROGRESS BARS */
 .taskProgressInner, 
 #videoOsdPage .sliderMarker.watched,
 progress::-webkit-progress-value,
 progress::-moz-progress-bar { 
   background-color: rgb(var(--abyss-accent)) !important;
-  box-shadow: 0 0 10px var(--accent-glow) !important;
+  box-shadow: 0 0 10px rgba(10, 132, 255, 0.6) !important;
 }
 
-/* 7. CLEANER NAVIGATION HIGHLIGHTS */
-.navMenuOption:hover, 
-.listItem:hover, 
-.actionSheetMenuItem:hover {
-  background: linear-gradient(90deg, rgba(var(--abyss-accent), 0.15) 0%, transparent 100%) !important;
-  border-left: 4px solid rgb(var(--abyss-accent)) !important;
-  color: #ffffff !important; 
+/* 7. HIGH-CONTRAST ACTION BUTTONS */
+/* Make Play/Resume buttons pure white with black text */
+.btnPlay, .btnResume {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important; /* Pill shape for primary actions */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15) !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+
+.btnPlay:hover, .btnResume:hover {
+  background: #e5e5ea !important;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Keep secondary buttons dark/frosted but with blue hover */
+.raised:hover:not(.btnPlay):not(.btnResume), 
+.fab:hover, 
+a[data-role="button"]:hover {
+  background: rgba(10, 132, 255, 0.15) !important;
+  color: rgb(var(--abyss-accent)) !important;
+  border-color: rgba(10, 132, 255, 0.3) !important;
 }

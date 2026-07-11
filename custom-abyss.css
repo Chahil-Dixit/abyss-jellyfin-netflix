@@ -3,24 +3,73 @@
 
 /* 2. NETFLIX STYLE OVERRIDES */
 :root {
-  /* Netflix Red Accent (#E50914) */
-  --abyss-accent: 229, 9, 20; 
+  /* Keep base accent white so sidebars and menus don't turn red */
+  --abyss-accent: 255, 255, 255; 
   
   /* Sharper, slightly squared corners typical of Netflix */
   --abyss-radius: 4px;
   
   /* Darker backgrounds for modals and drawers */
   --abyss-glass-tint: 20, 20, 20;
+
+  /* Define Netflix specific colors */
+  --netflix-red: #E50914;
+  --netflix-bg: #141414;
 }
 
-/* Deep dark background to match Netflix's standard (#141414) */
+/* Deep dark background to match Netflix's standard */
 body, 
 .backgroundContainer,
 .backgroundContainer.withBackdrop,
 .mainDrawer,
 .dialog,
 .appfooter {
-  background-color: #141414 !important;
+  background-color: var(--netflix-bg) !important;
+}
+
+/* SUBTLE HOVERS (Reverting the aggressive red) */
+.raised:hover, 
+.fab:hover, 
+.navMenuOption:hover, 
+.listItem:hover, 
+.actionSheetMenuItem:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important; 
+}
+
+/* NETFLIX BUTTONS */
+/* Netflix Play button is typically solid white with black text */
+.btnPlay, .btnResume {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+.btnPlay:hover, .btnResume:hover {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Secondary buttons (Trailer, Edit, More Info) are translucent grey */
+.btnPlayTrailer, .btnMoreInfo, a[data-role="button"] {
+  background-color: rgba(109, 109, 110, 0.7) !important;
+  color: #ffffff !important;
+}
+.btnPlayTrailer:hover, .btnMoreInfo:hover, a[data-role="button"]:hover {
+  background-color: rgba(109, 109, 110, 0.4) !important;
+}
+
+/* NETFLIX RED ACCENTS (Strictly for progress and active states) */
+.taskProgressInner, 
+#videoOsdPage .sliderMarker.watched,
+progress::-webkit-progress-value,
+progress::-moz-progress-bar { 
+  background-color: var(--netflix-red) !important;
+}
+
+.mdl-slider::-webkit-slider-thumb {
+  background: var(--netflix-red) !important;
+}
+
+input[type="checkbox"]:checked { 
+  accent-color: var(--netflix-red) !important;
 }
 
 /* Netflix-style card scaling on hover */
@@ -41,29 +90,4 @@ body,
 
 .card:hover .cardText {
   opacity: 1;
-}
-
-/* Ensure interactive elements and buttons retain white text on the red hover background */
-.raised:hover, 
-.fab:hover, 
-.navMenuOption:hover, 
-.listItem:hover, 
-.actionSheetMenuItem:hover {
-  background: rgb(var(--abyss-accent)) !important;
-  color: #ffffff !important; 
-}
-
-/* Force standard Play buttons to use the Netflix red accent by default */
-.btnPlay, .btnResume, .btnPlayTrailer {
-  background-color: rgb(var(--abyss-accent)) !important;
-  color: #ffffff !important;
-}
-
-.btnPlay:hover, .btnResume:hover, .btnPlayTrailer:hover {
-  background-color: #f40612 !important; /* Slightly brighter red on hover */
-}
-
-/* Adjust the progress bar to look like Netflix's red scrubber */
-.taskProgressInner, #videoOsdPage .sliderMarker.watched { 
-  background: #E50914 !important;
 }

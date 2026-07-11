@@ -153,3 +153,33 @@ a[data-role="button"]:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(10, 132, 255, 0.6) !important;
 }
+
+/* =========================================
+   TRANSPARENT MENU & LIST HOVERS
+   ========================================= */
+
+/* Remove the solid background on hover for all menu/list items */
+.navMenuOption:hover,
+.listItem:hover,
+.actionSheetMenuItem:hover,
+.emby-select-withcolor:hover {
+  background: rgba(10, 132, 255, 0.15) !important; /* 15% opacity blue */
+  color: #ffffff !important; /* Keep the text bright white */
+  border-radius: 12px !important; 
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+/* For the currently active/selected menu item in the sidebar */
+.navMenuOption-selected {
+  /* Use a smooth fade from left to right instead of a solid block */
+  background: linear-gradient(90deg, rgba(10, 132, 255, 0.25) 0%, transparent 100%) !important;
+  border-left: 4px solid #0a84ff !important; /* Sharp blue line on the left */
+  color: #ffffff !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+
+/* Ensure the icons inside the menu stay white on hover */
+.navMenuOption:hover .navMenuOptionIcon,
+.navMenuOption-selected .navMenuOptionIcon {
+  color: #0a84ff !important; /* Tint the icon blue instead of the whole background */
+}
